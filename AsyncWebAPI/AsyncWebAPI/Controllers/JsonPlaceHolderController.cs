@@ -24,27 +24,58 @@ namespace AsyncWebAPI.Controllers
         [HttpGet("GetAllSync")]
         public IActionResult GetAllSync()
         {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
+            var stopwatchTotal = new Stopwatch();
+            stopwatchTotal.Start();
 
+            var stopwatchPosts = new Stopwatch();
+            stopwatchPosts.Start();
             var posts = _jsonPlaceHolderExternalService.GetPosts();
-            var comments = _jsonPlaceHolderExternalService.GetComments();
-            var albums = _jsonPlaceHolderExternalService.GetAlbums();
-            var photos = _jsonPlaceHolderExternalService.GetPhotos();
-            var todos = _jsonPlaceHolderExternalService.GetTodos();
-            var users = _jsonPlaceHolderExternalService.GetUsers();
+            stopwatchPosts.Stop();
 
-            stopwatch.Stop();
+            var stopwatchComments = new Stopwatch();
+            stopwatchComments.Start();
+            var comments = _jsonPlaceHolderExternalService.GetComments();
+            stopwatchComments.Stop();
+
+            var stopwatchAlbums = new Stopwatch();
+            stopwatchAlbums.Start();
+            var albums = _jsonPlaceHolderExternalService.GetAlbums();
+            stopwatchAlbums.Stop();
+
+            var stopwatchPhotos = new Stopwatch();
+            stopwatchPhotos.Start();
+            var photos = _jsonPlaceHolderExternalService.GetPhotos();
+            photos = _jsonPlaceHolderExternalService.GetPhotos();
+            photos = _jsonPlaceHolderExternalService.GetPhotos();
+            stopwatchPhotos.Stop();
+
+            var stopwatchTodos = new Stopwatch();
+            stopwatchTodos.Start();
+            var todos = _jsonPlaceHolderExternalService.GetTodos();
+            stopwatchTodos.Stop();
+
+            var stopwatchUsers = new Stopwatch();
+            stopwatchUsers.Start();
+            var users = _jsonPlaceHolderExternalService.GetUsers();
+            stopwatchUsers.Stop();
+
+            stopwatchTotal.Stop();
 
             var response = new Response
             {
+                TempoDeExecucaoEmSegundosPosts = stopwatchPosts.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosComments = stopwatchComments.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosAlbums = stopwatchAlbums.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosPhotos = stopwatchPhotos.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosTodos = stopwatchTodos.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosUsers = stopwatchUsers.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosTotal = stopwatchTotal.Elapsed.TotalSeconds,
                 Posts = posts,
                 Comments = comments,
                 Albums = albums,
                 Photos = photos,
                 Todos = todos,
-                Users = users,
-                TempoDeExecucaoEmSegundos = stopwatch.Elapsed.TotalSeconds
+                Users = users
             };
 
             return Ok(response);
@@ -53,27 +84,58 @@ namespace AsyncWebAPI.Controllers
         [HttpGet("GetAllAsync")]
         public async Task<IActionResult> GetAllAsync()
         {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
+            var stopwatchTotal = new Stopwatch();
+            stopwatchTotal.Start();
 
+            var stopwatchPosts = new Stopwatch();
+            stopwatchPosts.Start();
             var posts = await _jsonPlaceHolderExternalService.GetPostsAsync();
-            var comments = await _jsonPlaceHolderExternalService.GetCommentsAsync();
-            var albums = await _jsonPlaceHolderExternalService.GetAlbumsAsync();
-            var photos = await _jsonPlaceHolderExternalService.GetPhotosAsync();
-            var todos = await _jsonPlaceHolderExternalService.GetTodosAsync();
-            var users = await _jsonPlaceHolderExternalService.GetUsersAsync();
+            stopwatchPosts.Stop();
 
-            stopwatch.Stop();
+            var stopwatchComments = new Stopwatch();
+            stopwatchComments.Start();
+            var comments = await _jsonPlaceHolderExternalService.GetCommentsAsync();
+            stopwatchComments.Stop();
+
+            var stopwatchAlbums = new Stopwatch();
+            stopwatchAlbums.Start();
+            var albums = await _jsonPlaceHolderExternalService.GetAlbumsAsync();
+            stopwatchAlbums.Stop();
+
+            var stopwatchPhotos = new Stopwatch();
+            stopwatchPhotos.Start();
+            var photos = await _jsonPlaceHolderExternalService.GetPhotosAsync();
+            photos = await _jsonPlaceHolderExternalService.GetPhotosAsync();
+            photos = await _jsonPlaceHolderExternalService.GetPhotosAsync();
+            stopwatchPhotos.Stop();
+
+            var stopwatchTodos = new Stopwatch();
+            stopwatchTodos.Start();
+            var todos = await _jsonPlaceHolderExternalService.GetTodosAsync();
+            stopwatchTodos.Stop();
+
+            var stopwatchUsers = new Stopwatch();
+            stopwatchUsers.Start();
+            var users = await _jsonPlaceHolderExternalService.GetUsersAsync();
+            stopwatchUsers.Stop();
+
+            stopwatchTotal.Stop();
 
             var response = new Response
             {
+                TempoDeExecucaoEmSegundosPosts = stopwatchPosts.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosComments = stopwatchComments.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosAlbums = stopwatchAlbums.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosPhotos = stopwatchPhotos.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosTodos = stopwatchTodos.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosUsers = stopwatchUsers.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosTotal = stopwatchTotal.Elapsed.TotalSeconds,
                 Posts = posts,
                 Comments = comments,
                 Albums = albums,
                 Photos = photos,
                 Todos = todos,
-                Users = users,
-                TempoDeExecucaoEmSegundos = stopwatch.Elapsed.TotalSeconds
+                Users = users
             };
 
             return Ok(response);
@@ -82,17 +144,42 @@ namespace AsyncWebAPI.Controllers
         [HttpGet("GetAllAsyncBetter")]
         public async Task<IActionResult> GetAllAsyncBetter()
         {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
+            var stopwatchTotal = new Stopwatch();
+            stopwatchTotal.Start();
 
+            var stopwatchPosts = new Stopwatch();
+            stopwatchPosts.Start();
             var posts = _jsonPlaceHolderExternalService.GetPostsAsync();
-            var comments = _jsonPlaceHolderExternalService.GetCommentsAsync();
-            var albums = _jsonPlaceHolderExternalService.GetAlbumsAsync();
-            var photos = _jsonPlaceHolderExternalService.GetPhotosAsync();
-            var todos = _jsonPlaceHolderExternalService.GetTodosAsync();
-            var users = _jsonPlaceHolderExternalService.GetUsersAsync();
+            //stopwatchPosts.Stop();
 
-            //stopwatch.Stop();
+            var stopwatchComments = new Stopwatch();
+            stopwatchComments.Start();
+            var comments = _jsonPlaceHolderExternalService.GetCommentsAsync();
+            //stopwatchComments.Stop();
+
+            var stopwatchAlbums = new Stopwatch();
+            stopwatchAlbums.Start();
+            var albums = _jsonPlaceHolderExternalService.GetAlbumsAsync();
+            //stopwatchAlbums.Stop();
+
+            var stopwatchPhotos = new Stopwatch();
+            stopwatchPhotos.Start();
+            var photos = _jsonPlaceHolderExternalService.GetPhotosAsync();
+            photos = _jsonPlaceHolderExternalService.GetPhotosAsync();
+            photos = _jsonPlaceHolderExternalService.GetPhotosAsync();
+            //stopwatchPhotos.Stop();
+
+            var stopwatchTodos = new Stopwatch();
+            stopwatchTodos.Start();
+            var todos = _jsonPlaceHolderExternalService.GetTodosAsync();
+            //stopwatchTodos.Stop();
+
+            var stopwatchUsers = new Stopwatch();
+            stopwatchUsers.Start();
+            var users = _jsonPlaceHolderExternalService.GetUsersAsync();
+            //stopwatchUsers.Stop();
+
+            //stopwatchTotal.Stop();
 
             var response = new Response
             {
@@ -102,10 +189,22 @@ namespace AsyncWebAPI.Controllers
                 Photos = await photos,
                 Todos = await todos,
                 Users = await users,
-                TempoDeExecucaoEmSegundos = stopwatch.Elapsed.TotalSeconds
+                TempoDeExecucaoEmSegundosPosts = stopwatchPosts.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosComments = stopwatchComments.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosAlbums = stopwatchAlbums.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosPhotos = stopwatchPhotos.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosTodos = stopwatchTodos.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosUsers = stopwatchUsers.Elapsed.TotalSeconds,
+                TempoDeExecucaoEmSegundosTotal = stopwatchTotal.Elapsed.TotalSeconds
             };
 
-            stopwatch.Stop();
+            stopwatchPosts.Stop();
+            stopwatchComments.Stop();
+            stopwatchAlbums.Stop();
+            stopwatchPhotos.Stop();
+            stopwatchTodos.Stop();
+            stopwatchUsers.Stop();
+            stopwatchTotal.Stop();
 
             return Ok(response);
         }
